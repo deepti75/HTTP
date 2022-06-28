@@ -1,0 +1,89 @@
+let cl = console.log;
+
+let getContent = document.getElementById("content");
+
+let getSearch = document.getElementById("search");
+
+let cafemenu =[
+  {
+    name:'SWEET-CORN-PIZZA ',
+    price:180,
+  image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEb3e1EQ-FZKslT1qtuds_kDeIvtA2v_vmiw&usqp=CAU',
+  },
+  {
+    name:'TOMATO PIZZA',
+    price:180,
+  image:'https://hips.hearstapps.com/wdy.h-cdn.co/assets/cm/15/09/54ef8b64366c1_-_fresh-tomato-pizza-kqgv52-xl.jpg?crop=1xw:1.0xh;center,top&resize=980:*',
+  },
+  {
+    name:'ONION PIZZA ',
+    price:180,
+    image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo1YjP_gOxgO1tXOtk0ZJoA8ml6lZV4ZpLGg&usqp=CAU',
+   },
+  {
+    name:'VEG PIZZA',
+    price:180,
+    image:'https://www.7thheaventirupur.com/wp-content/uploads/2021/01/hot-spicy-veggie-lge-pizzas-menu.jpg',
+  },
+  {
+    name:'PANEER PIZZA ',
+    price:220,
+   image:'https://i.pinimg.com/originals/1e/33/61/1e336162c6172fdb30da0449f1bfd71d.jpg',
+  },
+  {
+    name:'PANEER KABAB PIZZA ',
+    price:250,
+    image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3brNspdfkILL6X02DxxGlbiutqvAYvjzUasrNblN2mFi4D6MW3V-qm1EXfQxm4aNa32Q&usqp=CAU'
+  },
+  {
+    name:'CHESS BRUST PIZZA ',
+    price:250,
+    image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPIR5xpyUJ0mbeTsGl8LWK2AvlR-8O0WhAGA&usqp=CAU',
+  },
+  {
+    name:'SWEET BLAST PIZZA',
+    price:250,
+    image:'https://static.toiimg.com/thumb/51892394/10-best-mid-range-Italian-Pizzeria-in-Gurgaon.jpg?width=1200&height=900',
+  },
+  {
+    name:'SWEET BLAST PIZZA',
+    price:250,
+    image:'https://static.toiimg.com/thumb/51892394/10-best-mid-range-Italian-Pizzeria-in-Gurgaon.jpg?width=1200&height=900',
+  }
+]
+
+function cafetaria(array){
+  array.forEach(element =>{
+  getContent.innerHTML+=`
+  <div class='col-md-3 contentdiv'>
+    <img src="${element.image}" class="contentImg">
+  <h1 class="secHeading">${element.name}</h1>
+  <span> Price - ${element.price}</span>
+  <button class="btn">Buy</button>
+  </div>`
+})
+}
+cafetaria(cafemenu);
+
+getSearch.addEventListener("click",onClick)
+
+function onClick(){
+  getSearch.style.backgroundColor="#491404";
+  getSearch.style.color="#dbb88e";
+  getSearch.style.border="1px solid #dbb88e"
+  getSearch.style.boxShadow="0 10px 10px rgba(170, 23, 23, 0.5);";
+}
+getSearch.addEventListener("keyup", findMenuItes)
+
+function findMenuItes(ele){
+  if(ele.key === "Enter"){
+    getContent.innerHTML="";
+     cl(ele.target.value.toLowerCase());
+    let newCafeMenu = cafemenu.filter(menuItem =>{
+      let d =  ele.target.value;
+      return menuItem.name.toLowerCase().includes(d);
+    })
+    cl(newCafeMenu);
+    cafetaria(newCafeMenu);
+  }
+}
